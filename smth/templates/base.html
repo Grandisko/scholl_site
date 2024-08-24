@@ -1,0 +1,186 @@
+<!-- base.html -->
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Образовательное учреждение</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'styles.css' %}">
+    <script src="{% static 'script.js' %}"></script>
+    <style>
+       .container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+        }
+        select {
+            width: 200px;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            background-color: #333;
+            color: #ffffff;
+            font-size: 16px;
+            font-family: Arial, sans-serif;
+            cursor: pointer;
+        }
+        select:hover {
+            background-color: #333;
+            box-shadow: 0 0 0 2px #ffffff;
+        }
+        select option {
+            padding: 10px;
+            border-bottom: 1px solid #ccc;
+        }
+        select option:hover {
+            background-color: #e9e9e9;
+        }
+
+        .nav-link {
+            text-decoration: none;
+            color: #ffffff;
+        }
+        .nav-link:hover {
+            color: #ffffff;
+        }
+
+        select::-webkit-scrollbar {
+            width: 12px;
+            height: 12px;
+        }
+        select::-webkit-scrollbar-thumb {
+            background-color: #ffffff;
+            border-radius: 10px;
+            border: 2px solid #337ab7;
+        }
+        select::-webkit-scrollbar-track {
+            background-color: #ffffff;
+            border-radius: 10px;
+        }
+        .footer {
+          background-color: #333;
+          color: #fff;
+          padding: 30px 0;
+        }
+
+        .footer-title {
+          color: #fff;
+          font-weight: bold;
+        }
+
+        .footer ul li {
+          margin-bottom: 10px;
+        }
+
+        .footer ul li i {
+          margin-right: 10px;
+        }
+
+        .footer ul li a {
+          color: #fff;
+        }
+
+        .footer ul li a:hover {
+          text-decoration: underline;
+        }
+
+        .footer .list-inline-item a {
+          color: #fff;
+          font-size: 24px;
+          margin: 0 10px;
+        }
+
+        .footer .list-inline-item a:hover {
+          color: #ccc;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="{% url 'index' %}" aria-label="Главная" class="nav-link">Главная</a></li>
+                <li>
+                    <select name="about_Us" id="about_Us" required="required">
+                        <option value="">О нас</option>
+                        <option value="{% url 'material_technical_support' %}">Материально-техническая поддержка</option>
+                        <option value="{% url 'educational_standards' %}">Образовательные стандарты</option>
+                        <option value="{% url 'paid_services' %}">Платные услуги</option>
+                        <option value="{% url 'teachers' %}">Преподаватели</option>
+                        <option value="{% url 'award_list' %}">Награды и лицензии</option>
+                        <option value="{% url 'controls_list' %}">Органы управления</option>
+                    </select>
+                </li>
+                <li>
+                    <select name="parents" id="parents" required="required">
+                        <option value="">Родителям</option>
+                        <option value="{% url 'teachers' %}">Преподаватели</option>
+                        <option value="{% url 'contact' %}">Контакты</option>
+                        <option value="{% url 'educational_standards' %}">Образовательные стандарты</option>
+                        <option value="{% url 'material_technical_support' %}">Материально-техническая поддержка</option>
+                        <option value="{% url 'paid_services' %}">Платные услуги</option>
+                        <option value="{% url 'ask' %}">Задать вопрос</option>
+                    </select>
+                </li>
+                <li>
+                    <select name="students" id="students" required="required">
+                        <option value="">Учащимся</option>
+                        <option value="{% url 'ask' %}">Задать вопрос</option>
+                        <option value="{% url 'apply' %}">Заявка на поступление</option>
+                        <option value="{% url 'scholarships' %}">Стипендии</option>
+                    </select>
+                </li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        {% block content %}{% endblock %}
+    </main>
+    <footer class="footer">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-4">
+        <h4 class="footer-title">Контакты</h4>
+        <ul class="list-unstyled">
+          <li><i class="fas fa-map-marker-alt"></i> г. Минск, ул. Куйбышева, 42</li>
+          <li><i class="fas fa-phone"></i> +7 (347) 246-8500</li>
+          <li><i class="fas fa-envelope"></i> mail@simai.ru</li>
+        </ul>
+      </div>
+      <div class="col-md-4">
+        <h4 class="footer-title">Меню</h4>
+        <ul class="list-unstyled">
+            <li><a href="{% url 'index' %}">Главная</a></li>
+            <li><a href="{% url 'contact' %}">Контакты</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-12 text-center">
+        <p class="mb-0">© 2024 Общеобразовательное учреждение средняя общеобразовательная школа №1 города Минск</p>
+        <p class="SIMAI-SF4">SIMAI-SF4: Сайт школы</p>
+      </div>
+    </div>
+  </div>
+</footer>
+    <script>
+        document.getElementById('parents').addEventListener('change', function() {
+            var value = this.value;
+            if (value) {
+                window.location.href = value;
+            }
+        });
+        document.getElementById('students').addEventListener('change', function() {
+            var value = this.value;
+            if (value) {
+                window.location.href = value;
+            }
+        });
+        document.getElementById('about_Us').addEventListener('change', function() {
+            var value = this.value;
+            if (value) {
+                window.location.href = value;
+            }
+        });
+    </script>
+</body>
+</html>

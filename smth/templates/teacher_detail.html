@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <div class="container py-5">
+    <div class="row">
+      <div class="col-md-8 offset-md-2">
+        <div class="card">
+          <img src="{{ teacher.image.url }}" alt="Teacher Image" class="card-img-top rounded-circle" style="height: 300px; width: 300px; object-fit: cover;">
+          <div class="card-body">
+            <h1 class="card-title">{{ teacher.name }}</h1>
+            <p class="card-text"><i class="fas fa-briefcase"></i> {{ teacher.position }}</p>
+            <p class="card-text">{{ teacher.bio }}</p>
+            <p class="card-text"><i class="fas fa-clock"></i> Работает с: {{ teacher.created_at }}</p>
+          </div>
+          <div class="card-footer">
+            <div class="btn-group">
+              {% if teacher.previous %}
+                <a href="{% url 'teacher_detail' teacher.previous.pk %}" class="btn btn-outline-secondary btn-sm">
+                  <i class="fas fa-chevron-left"></i> Предыдущий</a>
+              {% endif %}
+              {% if teacher.next %}
+                <a href="{% url 'teacher_detail' teacher.next.pk %}" class="btn btn-outline-secondary btn-sm">Следующий <i class="fas fa-chevron-right"></i></a>
+              {% endif %}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock %}

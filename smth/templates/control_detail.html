@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <div class="container py-5">
+    <div class="row">
+      <div class="col-md-8 offset-md-2">
+        <div class="card">
+            <img src="{{ control.image.url }}" alt="{{ control.name }}" class="card-img-top rounded-circle" style="height: 300px; width: 300px; object-fit: cover;">
+          <div class="card-body">
+            <h1 class="card-title">{{ control.name}}</h1>
+            <p class="card-text"><i class="fas fa-briefcase"></i> {{ control.position }}</p>
+            <p class="card-text">{{ control.bio }}</p>
+            <p class="card-text"><i class="fas fa-clock"></i> Работает с: {{ control.created_at }}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock %}

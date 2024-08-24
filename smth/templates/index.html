@@ -1,0 +1,102 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<style>
+    .news-item {
+      width: 30%;
+      margin-bottom: 20px;
+      border: 1px solid #ddd; /* добавлена обводка */
+      border-radius: 10px; /* добавлен радиус */
+      padding: 10px; /* добавлен padding */
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* добавлен тень */
+    }
+    .news-item img {
+      width: 100%;
+      height: auto;
+      border-top-left-radius: 10px;
+      border-top-right-radius: 10px;
+    }
+    .news-item .date {
+      font-size: 14px;
+      color: #888;
+      margin-bottom: 5px;
+    }
+    .news-item .title {
+      font-size: 18px;
+      font-weight: bold;
+      margin-bottom: 10px;
+    }
+    .news-item .description {
+      font-size: 16px;
+      line-height: 1.5;
+      overflow: hidden; /* добавлен overflow: hidden */
+      text-overflow: ellipsis; /* добавлен text-overflow: ellipsis */
+      white-space: nowrap; /* добавлен white-space: nowrap */
+    }
+    .popup {
+  display: none;
+  position: fixed;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 80%;
+  max-width: 500px;
+  background-color: white;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+  z-index: 100;
+}
+
+.popup-content {
+  padding: 20px;
+}
+
+.close {
+  color: #aaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
+}
+</style>
+<script>
+function showPopup() {
+  var popup = document.getElementById("myPopup");
+  popup.style.display = "block";
+}
+
+function closePopup() {
+  var popup = document.getElementById("myPopup");
+  popup.style.display = "none";
+}
+</script>
+<body onload="showPopup()">
+<div id="myPopup" class="popup">
+  <div class="popup-content">
+    <span class="close" onclick="closePopup()">&times;</span>
+    <p>Согласие с политикой использования</p>
+    <p>Нажимая "Принять", Вы подтверждаете, что ознакомились и согласны с политикой использования сайта.</p>
+    <button onclick="closePopup()">Принять</button>
+  </div>
+</div>
+    <h1>Новости</h1>
+    <div class="container">
+      {% for news in news %}
+          <div class="news-item">
+            <a href="{% url 'news_detail' news.pk %}" style="text-decoration: none; color: inherit;">
+            <img src="{{ news.image.url }}" alt="{{ news.title }}">
+            <h2 class="title">{{ news.title }}</h2>
+            <p class="description">{{ news.text|truncatechars:100 }}...</p>
+            <p class="date">{{ news.created_at }}</p>
+          </div>
+        </a>
+      {% endfor %}
+    </div>
+  </body>
+{% endblock %}

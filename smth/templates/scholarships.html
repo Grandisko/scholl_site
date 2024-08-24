@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<style>
+  .container1 {
+  max-width: 800px;
+  margin: 40px auto;
+  padding: 20px;
+  background-color: #f9f9f9;
+  border: 1px solid #ddd;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+
+.list-unstyled {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.scholarship {
+  padding: 20px;
+  border-bottom: 1px solid #ddd;
+}
+
+.scholarship-name {
+  font-size: 18px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.scholarship-description {
+  margin-bottom: 20px;
+}
+</style>
+<h1 >Стипендии</h1>
+  <div class="container1">
+    <ul class="list-unstyled">
+      {% for scholarship in scholarships %}
+        <li class="scholarship">
+          <h2 class="scholarship-name">{{ scholarship.name }}</h2>
+          <p class="scholarship-description">{{ scholarship.description }}</p>
+          <hr>
+        </li>
+      {% endfor %}
+    </ul>
+  </div>
+{% endblock %}

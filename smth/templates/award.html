@@ -1,0 +1,54 @@
+<!-- award.html -->
+
+{% extends 'base.html' %}
+
+{% block content %}
+<style>
+.award-item {
+  width: 32%;
+  margin-bottom: 20px;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  padding: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.award-item img {
+  width: 100%;
+  height: auto;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+}
+
+.award-item .title {
+  font-size: 18px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.award-item .description {
+  font-size: 16px;
+  line-height: 1.5;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.award-item .date {
+  font-size: 14px;
+  color: #888;
+  margin-bottom: 5px;
+}
+</style>
+  <h1>Награды и лицензии</h1>
+  <div class="container">
+    {% for award in awards %}
+      <div class="award-item">
+        <img src="{{ award.image.url }}" alt="{{ award.name }}">
+        <h2 class="title">{{ award.name }}</h2>
+        <p class="description">{{ award.description|truncatechars:150 }}...</p>
+        <p class="date">{{ award.created_at }}</p>
+      </div>
+    {% endfor %}
+  </div>
+{% endblock %}

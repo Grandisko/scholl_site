@@ -1,0 +1,55 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<style>
+  .card {
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+  }
+
+  .card-img-top {
+    width: 100%;
+    height: 150px;
+    object-fit: cover;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    cursor: pointer;
+  }
+
+  .card-body {
+    padding: 20px;
+  }
+
+  .card-title {
+    font-weight: bold;
+    margin-bottom: 10px;
+  }
+
+  .card-text {
+    font-size: 16px;
+    color: #666;
+  }
+
+  .col {
+    border: 1px solid #ddd;
+    padding: 10px;
+    border-radius: 10px;
+  }
+</style>
+  <h1>Структура и органы управления образовательной организацией</h1>
+   <div class="container">
+    {% for control in controls %}
+      <div class="col">
+        <a href="{% url 'control_detail' control.pk %}">
+          <div class="card">
+            <img src="{{ control.image.url }}" alt="{{ control.name }}" class="card-img-top">
+            <div class="card-body">
+              <h2 class="card-title">{{ control.name }}</h2>
+              <p class="card-text">{{ control.position }}</p>
+            </div>
+          </div>
+        </a>
+      </div>
+    {% endfor %}
+  </div>
+{% endblock %}

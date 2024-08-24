@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <div class="container py-5">
+    <div class="row">
+      <div class="col-md-8 offset-md-2">
+        <div class="card">
+          <img src="{{ news.image.url }}" alt="News Image" class="card-img-top rounded-circle" style="height: 300px; width: 300px; object-fit: cover;">
+          <div class="card-body">
+            <h1 class="card-title">{{ news.title }}</h1>
+            <p class="card-text">{{ news.text }}</p>
+            <p class="card-text"><i class="fas fa-clock"></i> Created at: {{ news.created_at }}</p>
+          </div>
+          <div class="card-footer">
+            <div class="btn-group">
+              {% if news.previous %}
+                <a href="{% url 'news_detail' news.previous.pk %}" class="btn btn-outline-secondary btn-sm">
+                  <i class="fas fa-chevron-left"></i> Previous</a>
+              {% endif %}
+              {% if news.next %}
+                <a href="{% url 'news_detail' news.next.pk %}" class="btn btn-outline-secondary btn-sm">Next <i class="fas fa-chevron-right"></i></a>
+              {% endif %}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock %}

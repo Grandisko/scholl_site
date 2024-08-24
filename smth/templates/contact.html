@@ -1,0 +1,9 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <h1>Контакты</h1>
+  <p>Адрес: Минск{{ contact.address }}</p>
+  <p>Телефон: +375293897492{{ contact.phone }}</p>
+  <p>Email: gtdandisko@bk.ru{{ contact.email }}</p>
+  <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2349.496609667109!2d27.567222000000004!3d53.902327!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x46dbca7e7e071735%3A0x643c711a03b21e90!2z0JHRgtC70LvQvtC00L7QstC/0L7RgNCw0LLQvtCy0L3QvtC-LCAxMDgwMDQ!5e0!3m2!1sru!2sby!4v1664446534939!5m2!1sru!2sby" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+{% endblock %}
